@@ -25,6 +25,7 @@ class LineDrawable extends Sized1DDrawable implements ShapeDrawable {
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
     bool hidden = false,
+    List<Offset>? offsets,
   })  : paint = paint ?? ShapeDrawable.defaultPaint,
         super(
             length: length,
@@ -34,6 +35,7 @@ class LineDrawable extends Sized1DDrawable implements ShapeDrawable {
             assists: assists,
             assistPaints: assistPaints,
             locked: locked,
+            offsets: offsets,
             hidden: hidden);
 
   /// Getter for padding of drawable.
@@ -61,6 +63,7 @@ class LineDrawable extends Sized1DDrawable implements ShapeDrawable {
     double? length,
     Paint? paint,
     bool? locked,
+    List<Offset>? offsets,
   }) {
     return LineDrawable(
       hidden: hidden ?? this.hidden,
@@ -71,6 +74,7 @@ class LineDrawable extends Sized1DDrawable implements ShapeDrawable {
       length: length ?? this.length,
       paint: paint ?? this.paint,
       locked: locked ?? this.locked,
+      offsets: offsets ?? this.offsets,
     );
   }
 

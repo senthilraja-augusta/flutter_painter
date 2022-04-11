@@ -24,6 +24,7 @@ abstract class Sized1DDrawable extends ObjectDrawable {
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
     bool hidden = false,
+    List<Offset>? offsets,
   }) : super(
             position: position,
             rotationAngle: rotationAngle,
@@ -31,6 +32,7 @@ abstract class Sized1DDrawable extends ObjectDrawable {
             assists: assists,
             assistPaints: assistPaints,
             locked: locked,
+            offsets: offsets,
             hidden: hidden);
 
   /// Getter for padding of drawable.
