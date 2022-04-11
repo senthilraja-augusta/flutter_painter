@@ -28,11 +28,34 @@ class _ShapeWidgetState extends State<_ShapeWidget> {
     if (settings.factory == null) return widget.child;
 
     return GestureDetector(
+      onTapDown: onTapDrawable,
       onScaleStart: onScaleStart,
       onScaleUpdate: onScaleUpdate,
       onScaleEnd: onScaleEnd,
       child: widget.child,
     );
+  }
+
+  void onTapDrawable(TapDownDetails details) {
+    final factory = settings.factory;
+    if (factory == null) return;
+
+    final shapeDrawable = factory.create(details.localPosition, settings.paint);
+
+    if (settings.drawOnce) {
+      PainterController.of(context).settings =
+          PainterController.of(context).settings.copyWith(
+                  shape: settings.copyWith(
+                factory: null,
+              ));
+    }
+
+    setState(() {
+      PainterController.of(context).addDrawables([shapeDrawable]);
+    });
+    SettingsUpdatedNotification(PainterController.of(context).value.settings)
+        .dispatch(context);
+    DrawableCreatedNotification(shapeDrawable).dispatch(context);
   }
 
   void onScaleStart(ScaleStartDetails details) {
