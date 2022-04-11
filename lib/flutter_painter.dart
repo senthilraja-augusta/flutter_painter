@@ -1,5 +1,5 @@
 /// The Flutter Painter library.
-///
+/// v1.0.1
 /// you can access all the APIs of Flutter Painter.
 library flutter_painter;
 
