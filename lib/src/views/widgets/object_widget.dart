@@ -42,7 +42,7 @@ class _ObjectWidgetState extends State<_ObjectWidget> {
   double transformationScale = 1;
 
   /// Getter for extra amount of padding added around each object to make it easier to interact with.
-  double get objectPadding => 25 / transformationScale;
+  double get objectPadding => 5 / transformationScale;
 
   /// Getter for the duration of fade-in and out animations for the object controls.
   static Duration get controlsTransitionDuration =>
@@ -50,9 +50,9 @@ class _ObjectWidgetState extends State<_ObjectWidget> {
 
   /// Getter for the size of the controls of the selected object.
   double get controlsSize =>
-      (settings.enlargeControlsResolver() ? 20 : 10) / transformationScale;
+      5; //(settings.enlargeControlsResolver() ? 20 : 10) / transformationScale;
 
-  /// Getter for the blur radius of the selected object highlighting.
+  /// Getter for the blur radius of the selected object highlig
   double get selectedBlurRadius => 2 / transformationScale;
 
   /// Getter for the border width of the selected object highlighting.
@@ -174,6 +174,8 @@ class _ObjectWidgetState extends State<_ObjectWidget> {
                               : SystemMouseCursors.allScroll,
                           child: GestureDetector(
                             behavior: HitTestBehavior.opaque,
+                            onTapDown: (details) =>
+                                tapDownDrawable(drawable, details),
                             onTap: () => tapDrawable(drawable),
                             onScaleStart: (details) =>
                                 onDrawableScaleStart(entry, details),
@@ -564,11 +566,22 @@ class _ObjectWidgetState extends State<_ObjectWidget> {
     });
   }
 
+  void tapDownDrawable(ObjectDrawable drawable, TapDownDetails details) {
+    if (drawable.locked) {
+      ObjectDrawable.tapDownDetails = details;
+      DrawableTapNotification(drawable).dispatch(context);
+      return;
+    }
+  }
+
   /// Callback when an object is tapped.
   ///
   /// Dispatches an [ObjectDrawableNotification] that the object was tapped.
   void tapDrawable(ObjectDrawable drawable) {
-    if (drawable.locked) return;
+    if (drawable.locked) {
+      //DrawableTapNotification(drawable).dispatch(context);
+      return;
+    }
 
     if (controller?.selectedObjectDrawable == drawable) {
       ObjectDrawableReselectedNotification(drawable).dispatch(context);
@@ -847,6 +860,8 @@ class _ObjectWidgetState extends State<_ObjectWidget> {
   /// Replaces a drawable with a new one.
   void updateDrawable(ObjectDrawable oldDrawable, ObjectDrawable newDrawable,
       {bool newAction = false}) {
+    DrawableUpdatedNotification(newDrawable).dispatch(context);
+    SelectedObjectDrawableUpdatedNotification(newDrawable).dispatch(context);
     setState(() {
       PainterController.of(context)
           .replaceDrawable(oldDrawable, newDrawable, newAction: newAction);
@@ -1019,9 +1034,9 @@ class _ObjectWidgetState extends State<_ObjectWidget> {
     setState(() {
       final _m4storage =
           PainterController.of(context).transformationController.value;
-      transformationScale = math.sqrt(_m4storage[8] * _m4storage[8] +
-          _m4storage[9] * _m4storage[9] +
-          _m4storage[10] * _m4storage[10]);
+      // transformationScale = math.sqrt(_m4storage[8] * _m4storage[8] +
+      //     _m4storage[9] * _m4storage[9] +
+      //     _m4storage[10] * _m4storage[10]);
     });
   }
 }
@@ -1066,7 +1081,8 @@ class _ObjectControlBox extends StatelessWidget {
     return AnimatedContainer(
       duration: _ObjectWidgetState.controlsTransitionDuration,
       decoration: BoxDecoration(
-        color: active ? activeColor : inactiveColor,
+        border: Border.all(color: active ? activeColor : inactiveColor),
+        color: Colors.grey,
         shape: shape,
         boxShadow: [
           BoxShadow(

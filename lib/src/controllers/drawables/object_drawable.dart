@@ -42,12 +42,16 @@ abstract class ObjectDrawable extends Drawable {
   /// (for example: horizontal center, vertical center, right angle).
   final Set<ObjectDrawableAssist> assists;
 
+  final List<Offset>? offsets;
+
   /// The paint to be used for each assist type.
   ///
   /// By default, [defaultAssistPaint] will be used for
   /// [ObjectDrawableAssist.horizontal] and [ObjectDrawableAssist.vertical]
   /// and [defaultRotationAssistPaint] will be used for [ObjectDrawableAssist.rotation].
   final Map<ObjectDrawableAssist, Paint> assistPaints;
+
+  static late TapDownDetails tapDownDetails;
 
   /// Defines if the object drawable is locked or not.
   /// If it is locked, it won't be movable, scalable or re-sizable using the UI.
@@ -62,6 +66,7 @@ abstract class ObjectDrawable extends Drawable {
     this.assistPaints = const <ObjectDrawableAssist, Paint>{},
     this.locked = false,
     bool hidden = false,
+    this.offsets,
   })  : scale = scale < minScale ? minScale : scale,
         super(hidden: hidden);
 
@@ -114,7 +119,7 @@ abstract class ObjectDrawable extends Drawable {
   @override
   void draw(Canvas canvas, Size size) {
     // Draw the assist lines
-    drawAssists(canvas, size);
+    // drawAssists(canvas, size);
 
     // Save the canvas before transforming it, to be restored after the object is drawn
     canvas.save();
