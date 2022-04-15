@@ -185,6 +185,7 @@ class _FlutterPainterExampleState extends State<FlutterPainterExample> {
                     aspectRatio:
                         backgroundImage!.width / backgroundImage!.height,
                     child: FlutterPainter(
+                      onDrawableUpdated: ((drawable) {}),
                       controller: controller,
                     ),
                   ),
