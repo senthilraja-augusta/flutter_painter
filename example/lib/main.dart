@@ -181,9 +181,13 @@ class _FlutterPainterExampleState extends State<FlutterPainterExample> {
               // Enforces constraints
               Positioned.fill(
                 child: Center(
-                  child: FlutterPainter(
-                    onDrawableUpdated: ((drawable) {}),
-                    controller: controller,
+                  child: AspectRatio(
+                    aspectRatio:
+                        backgroundImage!.width / backgroundImage!.height,
+                    child: FlutterPainter(
+                      onDrawableUpdated: ((drawable) {}),
+                      controller: controller,
+                    ),
                   ),
                 ),
               ),
