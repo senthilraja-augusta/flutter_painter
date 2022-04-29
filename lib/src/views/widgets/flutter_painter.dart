@@ -47,6 +47,10 @@ class FlutterPainter extends StatelessWidget {
   /// The controller for this painter.
   final PainterController controller;
 
+  final double width;
+
+  final double height;
+
   /// Callback when a [Drawable] is created internally in [FlutterPainter].
   final DrawableCreatedCallback? onDrawableCreated;
 
@@ -77,6 +81,8 @@ class FlutterPainter extends StatelessWidget {
   const FlutterPainter(
       {Key? key,
       required this.controller,
+      required this.width,
+      required this.height,
       this.onDrawableCreated,
       this.onDrawableUpdated,
       this.onDrawableDeleted,
@@ -93,6 +99,8 @@ class FlutterPainter extends StatelessWidget {
   const FlutterPainter.builder(
       {Key? key,
       required this.controller,
+      required this.width,
+      required this.height,
       required FlutterPainterBuilderCallback builder,
       this.onDrawableCreated,
       this.onDrawableUpdated,
@@ -114,6 +122,8 @@ class FlutterPainter extends StatelessWidget {
                 context,
                 _FlutterPainterWidget(
                   key: controller.painterKey,
+                  width: width,
+                  height: height,
                   controller: controller,
                   onDrawableCreated: onDrawableCreated,
                   onDrawableUpdated: onDrawableUpdated,
@@ -138,6 +148,10 @@ class _FlutterPainterWidget extends StatelessWidget {
   /// The controller for this painter.
   final PainterController controller;
 
+  final double width;
+
+  final double height;
+
   /// Callback when a [Drawable] is created internally in [FlutterPainter].
   final DrawableCreatedCallback? onDrawableCreated;
 
@@ -160,6 +174,8 @@ class _FlutterPainterWidget extends StatelessWidget {
   const _FlutterPainterWidget(
       {Key? key,
       required this.controller,
+      required this.width,
+      required this.height,
       this.onDrawableCreated,
       this.onDrawableUpdated,
       this.onDrawableDeleted,
@@ -179,27 +195,32 @@ class _FlutterPainterWidget extends StatelessWidget {
               return NotificationListener<FlutterPainterNotification>(
                 onNotification: onNotification,
                 child: InteractiveViewer(
+                  constrained: false,
                   transformationController: controller.transformationController,
                   minScale: controller.settings.scale.enabled
                       ? controller.settings.scale.minScale
-                      : 1,
+                      : 0.1,
                   maxScale: controller.settings.scale.enabled
                       ? controller.settings.scale.maxScale
                       : 1,
                   panEnabled: controller.settings.scale.enabled &&
                       (controller.freeStyleSettings.mode == FreeStyleMode.none),
                   scaleEnabled: controller.settings.scale.enabled,
-                  child: _FreeStyleWidget(
-                    // controller: controller,
-                    child: _ShapeWidget(
+                  child: SizedBox(
+                    width: width,
+                    height: height,
+                    child: _FreeStyleWidget(
                       // controller: controller,
-                      child: _ObjectWidget(
+                      child: _ShapeWidget(
                         // controller: controller,
-                        interactionEnabled: true,
-                        child: CustomPaint(
-                          painter: Painter(
-                            drawables: controller.value.drawables,
-                            background: controller.value.background,
+                        child: _ObjectWidget(
+                          // controller: controller,
+                          interactionEnabled: true,
+                          child: CustomPaint(
+                            painter: Painter(
+                              drawables: controller.value.drawables,
+                              background: controller.value.background,
+                            ),
                           ),
                         ),
                       ),
