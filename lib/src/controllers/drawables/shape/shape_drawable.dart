@@ -17,6 +17,7 @@ abstract class ShapeDrawable extends ObjectDrawable {
   /// Default constructor for [ObjectDrawable].
   ShapeDrawable({
     Paint? paint,
+    int? id,
     required Offset position,
     double rotationAngle = 0,
     double scale = 1,
@@ -27,6 +28,7 @@ abstract class ShapeDrawable extends ObjectDrawable {
     bool hidden = false,
   })  : paint = paint ?? defaultPaint,
         super(
+            id: id,
             position: position,
             rotationAngle: rotationAngle,
             scale: scale,
