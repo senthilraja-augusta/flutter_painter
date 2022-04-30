@@ -31,6 +31,8 @@ abstract class ObjectDrawable extends Drawable {
   /// The scale of the object to be painted.
   final double scale;
 
+  final int id;
+
   /// The rotation of the object to be painted in radians.
   ///
   /// The rotation is clockwise.
@@ -67,7 +69,7 @@ abstract class ObjectDrawable extends Drawable {
     this.locked = false,
     bool hidden = false,
     this.offsets,
-    int? id,
+    this.id = 0,
   })  : scale = scale < minScale ? minScale : scale,
         super(hidden: hidden);
 
@@ -171,6 +173,7 @@ abstract class ObjectDrawable extends Drawable {
     double? rotation,
     double? scale,
     bool? locked,
+    int? id,
   });
 
   // @override

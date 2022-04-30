@@ -482,6 +482,7 @@ class _NoObjectPassedBackgroundDrawable extends ObjectDrawable {
       ui.Offset? position,
       double? rotation,
       double? scale,
+      int? id,
       bool? locked}) {
     throw UnimplementedError(
         "This object drawable is only to hold the default value in the PainterControllerValue copyWith method, and must not be used otherwise.");

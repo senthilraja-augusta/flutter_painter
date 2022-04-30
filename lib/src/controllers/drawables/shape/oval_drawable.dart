@@ -16,7 +16,6 @@ class OvalDrawable extends Sized2DDrawable implements ShapeDrawable {
   /// Creates a new [OvalDrawable] with the given [size] and [paint].
   OvalDrawable({
     Paint? paint,
-    int? id,
     required Size size,
     required Offset position,
     double rotationAngle = 0,
@@ -26,6 +25,7 @@ class OvalDrawable extends Sized2DDrawable implements ShapeDrawable {
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
     bool hidden = false,
+    int id = 0,
   })  : paint = paint ?? ShapeDrawable.defaultPaint,
         super(
             id: id,
@@ -69,6 +69,7 @@ class OvalDrawable extends Sized2DDrawable implements ShapeDrawable {
     Size? size,
     Paint? paint,
     bool? locked,
+    int? id,
   }) {
     return OvalDrawable(
       hidden: hidden ?? this.hidden,
@@ -79,6 +80,7 @@ class OvalDrawable extends Sized2DDrawable implements ShapeDrawable {
       size: size ?? this.size,
       locked: locked ?? this.locked,
       paint: paint ?? this.paint,
+      id: id ?? this.id,
     );
   }
 

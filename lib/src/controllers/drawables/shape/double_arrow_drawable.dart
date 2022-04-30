@@ -31,9 +31,11 @@ class DoubleArrowDrawable extends Sized1DDrawable implements ShapeDrawable {
     Map<ObjectDrawableAssist, Paint> assistPaints =
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
+    int id = 0,
     bool hidden = false,
   })  : paint = paint ?? ShapeDrawable.defaultPaint,
         super(
+            id: id,
             length: length,
             position: position,
             rotationAngle: rotationAngle,
@@ -98,6 +100,7 @@ class DoubleArrowDrawable extends Sized1DDrawable implements ShapeDrawable {
     double? length,
     Paint? paint,
     bool? locked,
+    int? id,
     double? arrowHeadSize,
   }) {
     return DoubleArrowDrawable(
@@ -107,6 +110,7 @@ class DoubleArrowDrawable extends Sized1DDrawable implements ShapeDrawable {
       rotationAngle: rotation ?? rotationAngle,
       scale: scale ?? this.scale,
       length: length ?? this.length,
+      id: id ?? this.id,
       paint: paint ?? this.paint,
       locked: locked ?? this.locked,
       arrowHeadSize: arrowHeadSize ?? this.arrowHeadSize,

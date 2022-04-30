@@ -24,8 +24,10 @@ abstract class Sized1DDrawable extends ObjectDrawable {
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
     bool hidden = false,
+    int id = 0,
     List<Offset>? offsets,
   }) : super(
+            id: id,
             position: position,
             rotationAngle: rotationAngle,
             scale: scale,
@@ -52,6 +54,7 @@ abstract class Sized1DDrawable extends ObjectDrawable {
     double? scale,
     double? length,
     bool? locked,
+    int? id,
   });
 
   /// Calculates the size of the rendered object.

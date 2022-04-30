@@ -29,17 +29,20 @@ class RectangleDrawable extends Sized2DDrawable implements ShapeDrawable {
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
     bool hidden = false,
+    int id = 0,
     this.borderRadius = const BorderRadius.all(Radius.circular(5)),
   })  : paint = paint ?? ShapeDrawable.defaultPaint,
         super(
-            size: size,
-            position: position,
-            rotationAngle: rotationAngle,
-            scale: scale,
-            assists: assists,
-            assistPaints: assistPaints,
-            locked: locked,
-            hidden: hidden);
+          size: size,
+          position: position,
+          rotationAngle: rotationAngle,
+          scale: scale,
+          assists: assists,
+          assistPaints: assistPaints,
+          locked: locked,
+          hidden: hidden,
+          id: id,
+        );
 
   /// Getter for padding of drawable.
   ///
@@ -77,9 +80,11 @@ class RectangleDrawable extends Sized2DDrawable implements ShapeDrawable {
     Size? size,
     Paint? paint,
     bool? locked,
+    int? id,
     BorderRadius? borderRadius,
   }) {
     return RectangleDrawable(
+      id: id ?? this.id,
       hidden: hidden ?? this.hidden,
       assists: assists ?? this.assists,
       position: position ?? this.position,

@@ -71,6 +71,7 @@ class TextDrawable extends ObjectDrawable {
     double? scale,
     TextStyle? style,
     bool? locked,
+    int? id,
     TextDirection? direction,
   }) {
     return TextDrawable(

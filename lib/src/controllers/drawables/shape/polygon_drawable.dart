@@ -25,16 +25,19 @@ class PolygonDrawable extends Sized2DDrawable implements ShapeDrawable {
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
     bool hidden = false,
+    int id = 0,
   })  : paint = paint ?? ShapeDrawable.defaultPaint,
         super(
-            size: size,
-            position: position,
-            rotationAngle: rotationAngle,
-            scale: scale,
-            assists: assists,
-            assistPaints: assistPaints,
-            locked: locked,
-            hidden: hidden);
+          size: size,
+          position: position,
+          rotationAngle: rotationAngle,
+          scale: scale,
+          assists: assists,
+          assistPaints: assistPaints,
+          locked: locked,
+          hidden: hidden,
+          id: id,
+        );
 
   /// Getter for padding of drawable.
   ///
@@ -61,6 +64,7 @@ class PolygonDrawable extends Sized2DDrawable implements ShapeDrawable {
     Size? size,
     Paint? paint,
     bool? locked,
+    int? id,
   }) {
     return PolygonDrawable(
       hidden: hidden ?? this.hidden,
@@ -71,6 +75,7 @@ class PolygonDrawable extends Sized2DDrawable implements ShapeDrawable {
       size: size ?? this.size,
       locked: locked ?? this.locked,
       paint: paint ?? this.paint,
+      id: id ?? this.id,
     );
   }
 

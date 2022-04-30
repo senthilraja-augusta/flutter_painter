@@ -14,7 +14,6 @@ abstract class Sized2DDrawable extends ObjectDrawable {
   const Sized2DDrawable({
     required this.size,
     required Offset position,
-    int? id,
     double rotationAngle = 0,
     double scale = 1,
     Set<ObjectDrawableAssist> assists = const <ObjectDrawableAssist>{},
@@ -22,6 +21,7 @@ abstract class Sized2DDrawable extends ObjectDrawable {
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
     bool hidden = false,
+    int id = 0,
   }) : super(
             id: id,
             position: position,
@@ -49,6 +49,7 @@ abstract class Sized2DDrawable extends ObjectDrawable {
     double? scale,
     Size? size,
     bool? locked,
+    int? id,
   });
 
   /// Calculates the size of the rendered object.

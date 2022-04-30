@@ -32,6 +32,7 @@ class ArrowDrawable extends Sized1DDrawable implements ShapeDrawable {
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
     bool hidden = false,
+    int id = 0,
   })  : paint = paint ?? ShapeDrawable.defaultPaint,
         super(
             length: length,
@@ -41,6 +42,7 @@ class ArrowDrawable extends Sized1DDrawable implements ShapeDrawable {
             assists: assists,
             assistPaints: assistPaints,
             locked: locked,
+            id: id,
             hidden: hidden);
 
   /// The actual arrow head size used in drawing.
@@ -93,9 +95,11 @@ class ArrowDrawable extends Sized1DDrawable implements ShapeDrawable {
     double? length,
     Paint? paint,
     bool? locked,
+    int? id,
     double? arrowHeadSize,
   }) {
     return ArrowDrawable(
+      id: id ?? this.id,
       hidden: hidden ?? this.hidden,
       assists: assists ?? this.assists,
       position: position ?? this.position,

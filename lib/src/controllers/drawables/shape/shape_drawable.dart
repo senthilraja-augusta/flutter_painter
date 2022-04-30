@@ -17,7 +17,6 @@ abstract class ShapeDrawable extends ObjectDrawable {
   /// Default constructor for [ObjectDrawable].
   ShapeDrawable({
     Paint? paint,
-    int? id,
     required Offset position,
     double rotationAngle = 0,
     double scale = 1,
@@ -26,6 +25,7 @@ abstract class ShapeDrawable extends ObjectDrawable {
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
     bool hidden = false,
+    int id = 0,
   })  : paint = paint ?? defaultPaint,
         super(
             id: id,
@@ -40,6 +40,7 @@ abstract class ShapeDrawable extends ObjectDrawable {
   /// Creates a copy of this but with the given fields replaced with the new values.
   @override
   ShapeDrawable copyWith({
+    int? id,
     bool? hidden,
     Set<ObjectDrawableAssist>? assists,
     Offset? position,

@@ -22,9 +22,11 @@ class ImageDrawable extends ObjectDrawable {
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
     bool hidden = false,
+    int id = 0,
     required this.image,
     this.flipped = false,
   }) : super(
+            id: id,
             position: position,
             rotationAngle: rotationAngle,
             scale: scale,
@@ -47,9 +49,11 @@ class ImageDrawable extends ObjectDrawable {
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
     bool hidden = false,
+    int id = 0,
     required Image image,
     bool flipped = false,
   }) : this(
+            id: id,
             position: position,
             rotationAngle: rotationAngle,
             scale: _calculateScaleFittedToSize(image, size),
@@ -70,6 +74,7 @@ class ImageDrawable extends ObjectDrawable {
       double? scale,
       Image? image,
       bool? flipped,
+      int? id,
       bool? locked}) {
     return ImageDrawable(
       hidden: hidden ?? this.hidden,
@@ -80,6 +85,7 @@ class ImageDrawable extends ObjectDrawable {
       image: image ?? this.image,
       flipped: flipped ?? this.flipped,
       locked: locked ?? this.locked,
+      id: id ?? this.id,
     );
   }
 
