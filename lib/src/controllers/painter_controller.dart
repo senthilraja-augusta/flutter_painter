@@ -349,6 +349,13 @@ class PainterController extends ValueNotifier<PainterControllerValue> {
     );
   }
 
+  ObjectDrawable? getDrawableById(int id) {
+    value.drawables.whereType<ObjectDrawable>().toList().map((e) {
+      if (e.id == id) return e;
+    });
+    return null;
+  }
+
   /// Deselects the object drawable from the drawables.
   ///
   /// [isRemoved] is whether the deselection happened because the selected
