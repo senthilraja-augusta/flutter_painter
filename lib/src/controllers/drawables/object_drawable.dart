@@ -67,6 +67,7 @@ abstract class ObjectDrawable extends Drawable {
     this.locked = false,
     bool hidden = false,
     this.offsets,
+    int? id,
   })  : scale = scale < minScale ? minScale : scale,
         super(hidden: hidden);
 

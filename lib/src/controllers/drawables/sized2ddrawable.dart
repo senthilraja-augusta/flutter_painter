@@ -14,6 +14,7 @@ abstract class Sized2DDrawable extends ObjectDrawable {
   const Sized2DDrawable({
     required this.size,
     required Offset position,
+    int? id,
     double rotationAngle = 0,
     double scale = 1,
     Set<ObjectDrawableAssist> assists = const <ObjectDrawableAssist>{},
@@ -22,6 +23,7 @@ abstract class Sized2DDrawable extends ObjectDrawable {
     bool locked = false,
     bool hidden = false,
   }) : super(
+            id: id,
             position: position,
             rotationAngle: rotationAngle,
             scale: scale,
