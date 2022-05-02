@@ -25,9 +25,11 @@ class LineDrawable extends Sized1DDrawable implements ShapeDrawable {
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
     bool hidden = false,
+    int id = 0,
     List<Offset>? offsets,
   })  : paint = paint ?? ShapeDrawable.defaultPaint,
         super(
+            id: id,
             length: length,
             position: position,
             rotationAngle: rotationAngle,
@@ -63,6 +65,7 @@ class LineDrawable extends Sized1DDrawable implements ShapeDrawable {
     double? length,
     Paint? paint,
     bool? locked,
+    int? id,
     List<Offset>? offsets,
   }) {
     return LineDrawable(
@@ -75,6 +78,7 @@ class LineDrawable extends Sized1DDrawable implements ShapeDrawable {
       paint: paint ?? this.paint,
       locked: locked ?? this.locked,
       offsets: offsets ?? this.offsets,
+      id: id ?? this.id,
     );
   }
 
