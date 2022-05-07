@@ -54,13 +54,19 @@ class OvalDrawable extends Sized2DDrawable implements ShapeDrawable {
 
     if (id != 0) {
       TextSpan span = new TextSpan(
-          style: new TextStyle(color: Colors.blue[800]), text: id.toString());
+          style: new TextStyle(color: Colors.white54), text: id.toString());
       TextPainter tp = new TextPainter(
           text: span,
-          textAlign: TextAlign.left,
+          textAlign: TextAlign.center,
           textDirection: TextDirection.ltr);
       tp.layout();
-      tp.paint(canvas, position);
+      tp.paint(
+          canvas,
+          Offset(
+            // Do calculations here:
+            (position.dx) - tp.width * 0.5,
+            (position.dy) - tp.height * 0.5,
+          ));
     }
     // canvas.drawOval(
     //     Rect.fromCenter(
