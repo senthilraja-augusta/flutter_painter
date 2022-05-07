@@ -350,10 +350,7 @@ class PainterController extends ValueNotifier<PainterControllerValue> {
   }
 
   Drawable? getDrawableById(int id) {
-    print('filter $id   ${value.drawables.length}');
-
     for (var e in value.drawables) {
-      print('${e.id}');
       if (e.id == id) return e;
     }
 
