@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import '../object_drawable.dart';
@@ -50,6 +51,17 @@ class OvalDrawable extends Sized2DDrawable implements ShapeDrawable {
   void drawObject(Canvas canvas, Size size) {
     final drawingSize = this.size * scale;
     canvas.drawCircle(position, drawingSize.width / 2, paint);
+
+    if (id != 0) {
+      TextSpan span = new TextSpan(
+          style: new TextStyle(color: Colors.blue[800]), text: id.toString());
+      TextPainter tp = new TextPainter(
+          text: span,
+          textAlign: TextAlign.left,
+          textDirection: TextDirection.ltr);
+      tp.layout();
+      tp.paint(canvas, position);
+    }
     // canvas.drawOval(
     //     Rect.fromCenter(
     //         center: position,
