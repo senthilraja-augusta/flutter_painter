@@ -349,10 +349,14 @@ class PainterController extends ValueNotifier<PainterControllerValue> {
     );
   }
 
-  ObjectDrawable? getDrawableById(int id) {
-    value.drawables.whereType<ObjectDrawable>().toList().map((e) {
+  Drawable? getDrawableById(int id) {
+    print('filter $id   ${value.drawables.length}');
+
+    for (var e in value.drawables) {
+      print('${e.id}');
       if (e.id == id) return e;
-    });
+    }
+
     return null;
   }
 
