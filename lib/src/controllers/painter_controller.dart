@@ -349,12 +349,12 @@ class PainterController extends ValueNotifier<PainterControllerValue> {
     );
   }
 
-  Drawable? getDrawableById(int id) {
+  List<Drawable> getDrawableById(int id) {
+    List<Drawable> objs = [];
     for (var e in value.drawables) {
-      if (e.id == id) return e;
+      if (e.id == id) objs.add(e);
     }
-
-    return null;
+    return objs;
   }
 
   /// Deselects the object drawable from the drawables.
