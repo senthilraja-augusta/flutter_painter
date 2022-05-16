@@ -25,6 +25,7 @@ abstract class ShapeDrawable extends ObjectDrawable {
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
     bool hidden = false,
+    bool dash = false,
     int id = 0,
   })  : paint = paint ?? defaultPaint,
         super(
@@ -34,6 +35,7 @@ abstract class ShapeDrawable extends ObjectDrawable {
             scale: scale,
             assists: assists,
             assistPaints: assistPaints,
+            dash: dash,
             locked: locked,
             hidden: hidden);
 
@@ -46,6 +48,7 @@ abstract class ShapeDrawable extends ObjectDrawable {
     Offset? position,
     double? rotation,
     double? scale,
+    bool? dash,
     Paint? paint,
     bool? locked,
   });

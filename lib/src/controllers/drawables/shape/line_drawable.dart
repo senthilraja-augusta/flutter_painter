@@ -65,6 +65,7 @@ class LineDrawable extends Sized1DDrawable implements ShapeDrawable {
     double? length,
     Paint? paint,
     bool? locked,
+    bool? dash,
     int? id,
     List<Offset>? offsets,
   }) {

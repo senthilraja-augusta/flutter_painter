@@ -98,6 +98,7 @@ class DoubleArrowDrawable extends Sized1DDrawable implements ShapeDrawable {
     double? rotation,
     double? scale,
     double? length,
+    bool? dash,
     Paint? paint,
     bool? locked,
     int? id,

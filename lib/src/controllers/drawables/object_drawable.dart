@@ -58,6 +58,7 @@ abstract class ObjectDrawable extends Drawable {
   /// Defines if the object drawable is locked or not.
   /// If it is locked, it won't be movable, scalable or re-sizable using the UI.
   final bool locked;
+  final bool dash;
 
   /// Default constructor for [ObjectDrawable].
   const ObjectDrawable({
@@ -68,6 +69,7 @@ abstract class ObjectDrawable extends Drawable {
     this.assistPaints = const <ObjectDrawableAssist, Paint>{},
     this.locked = false,
     bool hidden = false,
+    this.dash = false,
     this.offsets,
     this.id = 0,
   })  : scale = scale < minScale ? minScale : scale,

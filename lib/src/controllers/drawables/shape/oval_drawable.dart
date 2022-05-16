@@ -26,6 +26,7 @@ class OvalDrawable extends Sized2DDrawable implements ShapeDrawable {
         const <ObjectDrawableAssist, Paint>{},
     bool locked = false,
     bool hidden = false,
+    bool dash = false,
     int id = 0,
   })  : paint = paint ?? ShapeDrawable.defaultPaint,
         super(
@@ -34,6 +35,7 @@ class OvalDrawable extends Sized2DDrawable implements ShapeDrawable {
             position: position,
             rotationAngle: rotationAngle,
             scale: scale,
+            dash: dash,
             assists: assists,
             assistPaints: assistPaints,
             locked: locked,
@@ -50,7 +52,14 @@ class OvalDrawable extends Sized2DDrawable implements ShapeDrawable {
   @override
   void drawObject(Canvas canvas, Size size) {
     final drawingSize = this.size * scale;
-    canvas.drawCircle(position, drawingSize.width / 2, paint);
+    //canvas.drawCircle(position, drawingSize.width / 2, paint);
+
+    final path = Path();
+    path.addOval(Rect.fromCircle(
+      center: position,
+      radius: drawingSize.width / 2,
+    ));
+    canvas.drawPath(dash ? _dashPath(path, paint.strokeWidth) : path, paint);
 
     if (id != 0) {
       TextSpan span = new TextSpan(
@@ -84,6 +93,7 @@ class OvalDrawable extends Sized2DDrawable implements ShapeDrawable {
     Offset? position,
     double? rotation,
     double? scale,
+    bool? dash,
     Size? size,
     Paint? paint,
     bool? locked,
@@ -95,11 +105,32 @@ class OvalDrawable extends Sized2DDrawable implements ShapeDrawable {
       position: position ?? this.position,
       rotationAngle: rotation ?? rotationAngle,
       scale: scale ?? this.scale,
+      dash: dash ?? this.dash,
       size: size ?? this.size,
       locked: locked ?? this.locked,
       paint: paint ?? this.paint,
       id: id ?? this.id,
     );
+  }
+
+  ///Draws dashed path.
+  ///It depends on [strokeWidth] for space to line proportion.
+  Path _dashPath(Path path, double width) {
+    final dashPath = Path();
+    final dashWidth = 10.0 * width / 5;
+    final dashSpace = 10.0 * width / 5;
+    var distance = 0.0;
+    for (final pathMetric in path.computeMetrics()) {
+      while (distance < pathMetric.length) {
+        dashPath.addPath(
+          pathMetric.extractPath(distance, distance + dashWidth),
+          Offset.zero,
+        );
+        distance += dashWidth;
+        distance += dashSpace;
+      }
+    }
+    return dashPath;
   }
 
   /// Calculates the size of the rendered object.

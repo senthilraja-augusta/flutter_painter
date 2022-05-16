@@ -62,6 +62,7 @@ class PolygonDrawable extends Sized2DDrawable implements ShapeDrawable {
     double? rotation,
     double? scale,
     Size? size,
+    bool? dash,
     Paint? paint,
     bool? locked,
     int? id,

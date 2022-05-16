@@ -80,6 +80,7 @@ class RectangleDrawable extends Sized2DDrawable implements ShapeDrawable {
     Size? size,
     Paint? paint,
     bool? locked,
+    bool? dash,
     int? id,
     BorderRadius? borderRadius,
   }) {
